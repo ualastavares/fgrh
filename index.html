@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+
+<meta charset="UTF-8">
+<title>FG RH Sistema</title>
+
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<aside class="sidebar">
+
+<h2 class="logo">
+<img src="logo.png" alt="FG RH">
+</h2>
+
+<ul>
+<li onclick="abrirTela('dashboard')">Dashboard</li>
+<li onclick="abrirTela('empresas')">Empresas</li>
+<li onclick="abrirTela('vagas')">Vagas</li>
+<li onclick="abrirTela('candidatos')">Candidatos</li>
+</ul>
+
+</aside>
+
+<main class="content">
+
+
+<!-- DASHBOARD -->
+
+<section id="telaDashboard" class="tela">
+
+<h1>Dashboard RH</h1>
+
+<div class="cards">
+
+<div class="card">
+<h3>Vagas abertas</h3>
+<p id="dashVagasAbertas">0</p>
+</div>
+
+<div class="card">
+<h3>Vagas em processo</h3>
+<p id="dashVagasProcesso">0</p>
+</div>
+
+<div class="card">
+<h3>Vagas concluídas</h3>
+<p id="dashVagasConcluidas">0</p>
+</div>
+
+<div class="card">
+<h3>Total candidatos</h3>
+<p id="dashCandidatos">0</p>
+</div>
+
+</div>
+
+<h2>Candidatos por vaga</h2>
+
+<table>
+<thead>
+<tr>
+<th>Vaga</th>
+<th>Cidade</th>
+<th>Candidatos</th>
+</tr>
+</thead>
+<tbody id="dashVagasCandidatos"></tbody>
+</table>
+
+</section>
+
+
+<!-- EMPRESAS -->
+
+<section id="telaEmpresas" class="tela">
+
+<div class="top">
+<h1>Empresas</h1>
+<button onclick="abrirModalEmpresa()">+ Nova Empresa</button>
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Empresa</th>
+<th>CNPJ</th>
+<th>Responsável</th>
+<th>Email</th>
+<th>Telefone</th>
+<th>Cidade</th>
+<th>Ações</th>
+</tr>
+</thead>
+
+<tbody id="listaEmpresas"></tbody>
+
+</table>
+
+</section>
+
+
+<!-- VAGAS -->
+
+<section id="telaVagas" class="tela">
+
+<div class="top">
+<h1>Vagas</h1>
+<button onclick="abrirModalVaga()">+ Nova Vaga</button>
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Empresa</th>
+<th>Vaga</th>
+<th>Cidade</th>
+<th>Status</th>
+<th>Ações</th>
+</tr>
+</thead>
+
+<tbody id="listaVagas"></tbody>
+
+</table>
+
+</section>
+
+
+<!-- CANDIDATOS POR VAGA -->
+
+<section id="telaCandidatos" class="tela">
+
+<h1>Candidatos por vaga</h1>
+
+<table>
+
+<thead>
+<tr>
+<th>Vaga</th>
+<th>Cidade</th>
+<th>Candidatos</th>
+<th></th>
+</tr>
+</thead>
+
+<tbody id="listaCandidatosVagas"></tbody>
+
+</table>
+
+</section>
+
+
+<!-- LISTA DE CANDIDATOS -->
+
+<section id="telaListaCandidatos" class="tela">
+
+<div class="top">
+
+<h1 id="tituloVaga"></h1>
+<button onclick="voltarCandidatos()">Voltar</button>
+
+</div>
+
+<table>
+
+<thead>
+<tr>
+<th>Nome</th>
+<th>CPF</th>
+<th>Idade</th>
+<th>WhatsApp</th>
+<th>Email</th>
+<th>Currículo</th>
+</tr>
+</thead>
+
+<tbody id="listaCandidatos"></tbody>
+
+</table>
+
+</section>
+
+
+<!-- MODAL EMPRESA -->
+
+<div class="modal" id="modalEmpresa">
+
+<div class="modal-content">
+
+<h2>Cadastro Empresa</h2>
+
+<input id="nome" placeholder="Nome da empresa">
+<input id="cnpj" placeholder="CNPJ">
+<input id="responsavel" placeholder="Responsável">
+<input id="email" placeholder="Email">
+<input id="telefone" placeholder="Telefone">
+<input id="cidade" placeholder="Cidade">
+
+<textarea id="observacao" placeholder="Observações"></textarea>
+
+<button onclick="salvarEmpresa()">Salvar</button>
+<button onclick="fecharModalEmpresa()">Cancelar</button>
+
+</div>
+
+</div>
+
+
+<!-- MODAL VAGA -->
+
+<div class="modal" id="modalVaga">
+
+<div class="modal-content">
+
+<h2>Cadastro Vaga</h2>
+
+<select id="empresa_id"></select>
+
+<input id="titulo" placeholder="Título da vaga">
+<input id="cidade_vaga" placeholder="Cidade">
+
+<textarea id="requisitos" placeholder="Requisitos"></textarea>
+<textarea id="atividades" placeholder="Atividades"></textarea>
+
+<input id="salario" placeholder="Salário">
+<input id="email_contato" placeholder="Email contato">
+
+<select id="status">
+
+<option value="publicada">Publicada</option>
+<option value="triagem">Triagem</option>
+<option value="entrevistas">Entrevistas</option>
+<option value="entrevista_gestor">Entrevista Gestor</option>
+<option value="concluida">Concluída</option>
+
+</select>
+
+<button onclick="salvarVaga()">Salvar</button>
+<button onclick="fecharModalVaga()">Cancelar</button>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
