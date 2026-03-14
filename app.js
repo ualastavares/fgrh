@@ -732,3 +732,51 @@ link.click()
 
 }
 
+/* =========================
+LOGIN SIMPLES
+========================= */
+
+function fazerLogin(){
+
+const user=document.getElementById("loginUser").value
+const pass=document.getElementById("loginPass").value
+
+if(user==="admin" && pass==="admin"){
+
+localStorage.setItem("logado","true")
+
+document.getElementById("loginScreen").style.display="none"
+
+}else{
+
+document.getElementById("loginErro").innerText="Usuário ou senha inválidos"
+
+}
+
+}
+
+function logout(){
+
+localStorage.removeItem("logado")
+
+location.reload()
+
+}
+
+/* verificar login */
+
+window.onload=function(){
+
+const logado=localStorage.getItem("logado")
+
+if(logado==="true"){
+
+document.getElementById("loginScreen").style.display="none"
+
+}else{
+
+document.getElementById("loginScreen").style.display="flex"
+
+}
+
+}
