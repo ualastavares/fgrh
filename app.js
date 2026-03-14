@@ -419,8 +419,7 @@ lista.innerHTML=""
 
 data.forEach(c=>{
 
-lista.innerHTML+=`
-
+lista.innerHTML += `
 <tr>
 
 <td>${c.nome}</td>
@@ -430,13 +429,18 @@ lista.innerHTML+=`
 <td>${c.email}</td>
 
 <td>
+<button onclick="enviarWhatsapp('${c.whatsapp}','${c.nome}','${titulo}')" style="background:#25D366;color:black;">
+🟢 WhatsApp
+</button>
+</td>
+
+<td>
 <a href="${c.curriculo_url}" target="_blank">
 <button>Ver currículo</button>
 </a>
 </td>
 
 </tr>
-
 `
 
 })
@@ -778,5 +782,33 @@ document.getElementById("loginScreen").style.display="none"
 document.getElementById("loginScreen").style.display="flex"
 
 }
+
+}
+
+function enviarWhatsapp(numero,nome,vaga){
+
+// remover caracteres do número
+numero = numero.replace(/\D/g,'')
+
+// garantir DDD + 55
+if(!numero.startsWith("55")){
+numero = "55" + numero
+}
+
+const mensagem = encodeURIComponent(
+`Olá ${nome}! 
+
+Seu currículo foi selecionado para a vaga:
+
+${vaga}
+
+Gostaríamos de conversar com você para agendar uma entrevista.
+
+FG Consultoria RH`
+)
+
+const url = `https://wa.me/${numero}?text=${mensagem}`
+
+window.open(url,"_blank")
 
 }
