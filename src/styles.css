@@ -1,0 +1,355 @@
+
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,sans-serif;
+background:#020202;
+overflow-x:hidden;
+color:white;
+}
+.gold{
+background:linear-gradient(135deg,#ffcc00,#ff9d00);
+}
+.glass{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,204,0,0.15);
+}
+.hero-grid{
+background-image:
+radial-gradient(circle at top left, rgba(255, 196, 0, 0.562), transparent 35%),
+radial-gradient(circle at bottom right, rgba(255,196,0,.12), transparent 35%);
+}
+
+.premium-btn{
+position:relative;
+overflow:hidden;
+
+padding:16px 38px;
+
+border:none;
+border-radius:18px;
+
+font-size:16px;
+font-weight:700;
+letter-spacing:.5px;
+
+cursor:pointer;
+
+color:black;
+
+background:linear-gradient(135deg,#ffd000,#ffb300);
+
+transition:all .35s ease;
+
+box-shadow:
+0 10px 30px rgba(255,196,0,.25),
+0 0 20px rgba(255,196,0,.15);
+
+transform-style:preserve-3d;
+}
+
+/* brilho passando */
+.premium-btn::before{
+content:"";
+
+position:absolute;
+top:0;
+left:-120%;
+
+width:60%;
+height:100%;
+
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.85),
+transparent
+);
+
+transform:skewX(-20deg);
+
+transition:.8s;
+}
+
+/* glow */
+.premium-btn::after{
+content:"";
+
+position:absolute;
+inset:0;
+
+border-radius:18px;
+
+background:radial-gradient(
+circle at center,
+rgba(255,255,255,.25),
+transparent 70%
+);
+
+opacity:0;
+
+transition:.4s;
+}
+
+.premium-btn:hover{
+
+transform:
+translateY(-5px)
+scale(1.04);
+
+box-shadow:
+0 20px 50px rgba(255,196,0,.45),
+0 0 40px rgba(255,196,0,.35);
+
+background:linear-gradient(135deg,#ffe27a,#ffc400);
+}
+
+.premium-btn:hover::before{
+left:140%;
+}
+
+.premium-btn:hover::after{
+opacity:1;
+}
+
+.premium-btn:active{
+transform:scale(.98);
+}
+
+/* CARD FG5 PREMIUM */
+
+.featured-card{
+position:relative;
+overflow:hidden;
+
+transform-style:preserve-3d;
+
+transition:
+transform .4s ease,
+box-shadow .4s ease;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.5);
+}
+
+/* glow animado */
+
+.featured-card::before{
+content:"";
+
+position:absolute;
+inset:0;
+
+border-radius:40px;
+
+border:1px solid rgba(255,196,0,.18);
+
+box-shadow:
+inset 0 0 20px rgba(255,196,0,.05),
+0 0 30px rgba(255,196,0,.08);
+
+pointer-events:none;
+
+z-index:2;
+}
+
+/* brilho passando */
+
+.featured-card::after{
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:50%;
+height:100%;
+
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.18),
+transparent
+);
+
+transform:skewX(-20deg);
+
+transition:.8s;
+
+z-index:5;
+}
+
+.featured-card:hover::after{
+left:140%;
+}
+
+.featured-card:hover{
+
+transform:
+translateY(-10px)
+scale(1.02);
+
+box-shadow:
+0 40px 100px rgba(255,196,0,.18),
+0 0 80px rgba(255,196,0,.25);
+}
+
+/* selo premium */
+
+.best-seller-badge{
+position:absolute;
+
+top:24px;
+right:24px;
+
+z-index:20;
+
+padding:12px 20px;
+
+border-radius:999px;
+
+font-size:12px;
+font-weight:800;
+letter-spacing:2px;
+
+color:black;
+
+background:
+linear-gradient(
+135deg,
+#ffd000,
+#ffb300
+);
+
+box-shadow:
+0 0 25px rgba(255,196,0,.4),
+0 0 50px rgba(255,196,0,.25);
+
+animation:pulseGold 2s infinite;
+}
+
+/* animações */
+
+@keyframes pulseGold{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.06);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+/* HERO IMAGE PREMIUM */
+
+.hero-image-wrapper{
+position:relative;
+
+display:flex;
+justify-content:center;
+align-items:flex-end;
+}
+
+/* imagem */
+
+.hero-image{
+position:relative;
+
+max-height:760px;
+width:auto;
+
+object-fit:contain;
+
+animation:floatHero 7s ease-in-out infinite;
+
+-webkit-mask-image: linear-gradient(
+to bottom,
+black 0%,
+black 82%,
+transparent 100%
+);
+
+mask-image: linear-gradient(
+to bottom,
+black 0%,
+black 82%,
+transparent 100%
+);
+}
+
+/* floating premium */
+
+@keyframes floatHero{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-12px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* CLIENTES INFINITOS */
+
+.clients-marquee{
+position:relative;
+
+overflow:hidden;
+
+border-radius:40px;
+
+padding:30px 0;
+
+background:rgba(255,255,255,.03);
+
+border:1px solid rgba(255,196,0,.12);
+
+backdrop-filter:blur(10px);
+}
+
+.clients-track{
+display:flex;
+
+width:max-content;
+
+animation:scrollClients 25s linear infinite;
+}
+
+.clients-image{
+width:800px;
+
+flex-shrink:0;
+
+border-radius:30px;
+
+opacity:.95;
+
+object-fit:cover;
+}
+
+/* animação */
+
+@keyframes scrollClients{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
